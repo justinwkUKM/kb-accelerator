@@ -65,14 +65,14 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip     
         
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_9EA2412A6B3748B9A21D09F958E0E6CC }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_7D503CD91F3E48DBA083AC2B22A23A55 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_BB3DA518BCBE434E90E12F7E2D7195DB }}
-          auth-type: IDENTITY
-          enable-AzPSSession: true
+      # - name: Login to Azure
+      #   uses: azure/login@v2
+      #   with:
+      #     client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_9EA2412A6B3748B9A21D09F958E0E6CC }}
+      #     tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_7D503CD91F3E48DBA083AC2B22A23A55 }}
+      #     subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_BB3DA518BCBE434E90E12F7E2D7195DB }}
+          # auth-type: IDENTITY
+          # enable-AzPSSession: true
       # - name: Login to Azure
       #   uses: azure/login@v2
       #   with:
@@ -86,6 +86,7 @@ jobs:
           app-name: 'blobtrigger-maaden2026-prod'
           slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+          publish-profile: ${{secrets.PUBLISHED_PROFILE}}
           scm-do-build-during-deployment: true
           enable-oryx-build: true
-          
+
